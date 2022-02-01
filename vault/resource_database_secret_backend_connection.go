@@ -1404,7 +1404,7 @@ func databaseSecretBackendConnectionUpdate(d *schema.ResourceData, meta interfac
 			// Vault does not return the password in the API. If the root credentials have been rotated, sending
 			// the old password in the update request would break the connection config. Thus we only send it,
 			// if it actually changed, to still support updating it for non-rotated cases.
-			if k == "password" && d.HasChange(k) {
+			if k == "password" && d.HasChange("data.password") {
 				data[k] = v.(string)
 			}
 		}
